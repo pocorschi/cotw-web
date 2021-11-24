@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import color from 'color';
+import { motion } from 'framer-motion';
 import { AppContext } from '../state/AppContext';
 
 const Cover = () => {
@@ -13,6 +14,7 @@ const Cover = () => {
     }
     return 'white';
   };
+
   return (
     <div className="cover">
       <div style={{ backgroundColor: selectedPage ?? 'var(--default-cover-color)' }} className="top">
@@ -28,7 +30,7 @@ const Cover = () => {
         </h2>
 
         <p>Lorem ipsum sic dolor amet blah blah</p>
-        <div className="rivet" />
+        <motion.div className="rivet" animate={{ rotate: selectedPage ? 90 : 0 }} />
       </div>
     </div>
   );

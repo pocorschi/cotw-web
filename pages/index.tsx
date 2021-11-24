@@ -1,10 +1,12 @@
 import type { NextPage } from 'next';
 import React, { useContext, useEffect } from 'react';
 import { AnimateSharedLayout } from 'framer-motion';
+import useSound from 'use-sound';
 import { Page, Cover, colors, Details } from '../components';
 import { AppContext } from '../state/AppContext';
 import { Color } from '../types';
 import { getColorStats } from '../utils';
+import sfx from '../components/sfx1.mp3';
 
 const compile = (sourceColors: Color[]) => {
   const c: {
@@ -55,6 +57,8 @@ type Props = {
 const Home: NextPage<Props> = ({ stats }) => {
   const { setSelectedPage, selectedPage, setStats } = useContext(AppContext);
 
+  const [play] = useSound(sfx, { volume: 0.2 });
+
   const c: {
     [key: string]: {
       page1: Color[];
@@ -77,6 +81,10 @@ const Home: NextPage<Props> = ({ stats }) => {
       setStats(stats);
     }
   }, [stats]);
+
+  useEffect(() => {
+    play();
+  }, [selectedPage]);
 
   return (
     <div className="bg">
