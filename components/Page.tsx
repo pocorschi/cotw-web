@@ -34,7 +34,7 @@ const variants = {
 const getClass = (isActive: boolean, secondPage: boolean) => {
   if (isActive) {
     if (secondPage) {
-      return 'partial';
+      return 'openPartial';
     }
     return 'open';
   }
@@ -42,7 +42,11 @@ const getClass = (isActive: boolean, secondPage: boolean) => {
 };
 
 const Page = ({ colors, isActive, secondPage = false }: Props) => (
-  <motion.div className="page" animate={getClass(isActive, secondPage)} variants={variants}>
+  <motion.div
+    className={`page ${isActive && 'isactive'} ${secondPage && 'secondpage'}`}
+    animate={getClass(isActive, secondPage)}
+    variants={variants}
+  >
     <div className="header">
       <h2>COTW - {String(isActive)}</h2>
     </div>

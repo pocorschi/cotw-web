@@ -92,10 +92,8 @@ const Home: NextPage<Props> = ({ stats }) => {
 
           {Object.keys(c).map(key => (
             <React.Fragment key={key}>
-              {c[key].page2 ? (
-                <Page colors={c[key].page2 ?? []} isActive={selectedPage === key} key={key + 2} secondPage />
-              ) : null}
-              <Page colors={c[key].page1} isActive={selectedPage === key} key={`${key} + 1`} />
+              {c[key].page2 ? <Page colors={c[key].page2 ?? []} isActive={selectedPage === key} secondPage /> : null}
+              <Page colors={c[key].page1} isActive={selectedPage === key} />
             </React.Fragment>
           ))}
 
