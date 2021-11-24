@@ -1,0 +1,9 @@
+export { default as Swatch } from './Swatch';
+export { default as SwatchSmall } from './SwatchSmall';
+export { default as colors } from './colors';
+export { default as Page } from './Page';
+export { default as Cover } from './Cover';
+export { default as Details } from './Details';
+export { default as MetadataInfo } from './MetadataInfo';
+export { default as Trait } from './Trait';
+export { default as ProgressiveImage } from './ProgressiveImage';
