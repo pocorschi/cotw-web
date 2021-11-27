@@ -9,3 +9,4 @@ export { default as Trait } from './Trait';
 export { default as ProgressiveImage } from './ProgressiveImage';
 export { default as Menu } from './Menu';
 export { default as MenuItem } from './MenuItem';
+export { default as SubPageSelector } from './SubPageSelector';

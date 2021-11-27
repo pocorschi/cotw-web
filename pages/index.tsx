@@ -4,7 +4,7 @@ import Head from 'next/head';
 import React, { useContext, useEffect } from 'react';
 import { AnimateSharedLayout } from 'framer-motion';
 import useSound from 'use-sound';
-import { Page, Cover, colors, Details, Menu } from '../components';
+import { Page, Cover, colors, Details, Menu, SubPageSelector } from '../components';
 import { AppContext } from '../state/AppContext';
 import { ColorPages } from '../types';
 import { getColorStats } from '../utils';
@@ -40,6 +40,24 @@ const Home: NextPage<Props> = ({ stats }) => {
     }, 2000);
   }, []);
 
+  const setScale = () => {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    let scale = 1;
+    if (width < 500) {
+      scale = Math.min(Number(((height / 1200) * 0.85).toFixed(2)), 0.8);
+      document.documentElement.style.setProperty('--container-width', `${width}px`);
+    }
+    if (width > 500) {
+      scale = 0.7;
+    }
+    document.documentElement.style.setProperty('--scale', String(scale));
+  };
+
+  useEffect(() => {
+    setScale();
+  });
+
   return (
     <>
       <Head>
@@ -65,7 +83,7 @@ const Home: NextPage<Props> = ({ stats }) => {
                 <Page colors={c[key].page1} isActive={selectedPage === key} />
               </React.Fragment>
             ))}
-
+            <SubPageSelector active={Boolean(selectedPage && c[selectedPage]?.page2)} />
             <Cover />
           </div>
           <Details />

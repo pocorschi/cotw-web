@@ -8,7 +8,7 @@ type Props = {
 };
 
 const Menu = ({ colors }: Props) => {
-  const { selectedPage, setSelectedPage } = useContext(AppContext);
+  const { setSubPage, selectedPage, setSelectedPage } = useContext(AppContext);
   const handlePageSelect = (page: string) => {
     if (setSelectedPage) {
       if (selectedPage === page) {
@@ -16,6 +16,9 @@ const Menu = ({ colors }: Props) => {
       } else {
         setSelectedPage(page);
       }
+    }
+    if (setSubPage) {
+      setSubPage(1);
     }
   };
 

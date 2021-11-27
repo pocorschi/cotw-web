@@ -1,13 +1,40 @@
 import { useContext } from 'react';
 import { motion } from 'framer-motion';
+import { isMobile } from 'react-device-detect';
 import { AppContext } from '../state/AppContext';
 import { getTextColor } from '../utils/color';
+
+const variants = {
+  open: {
+    rotate: isMobile ? -90 : 90,
+    transition: {
+      duration: 0.5,
+      type: 'spring',
+      bounce: 0.4,
+    },
+  },
+  closed: {
+    rotate: 0,
+    transition: {
+      duration: 0.5,
+      type: 'spring',
+      bounce: 0,
+    },
+  },
+};
 
 const Cover = () => {
   const { selectedPage } = useContext(AppContext);
 
+  const getAnimationState = () => {
+    if (isMobile) {
+      return selectedPage === null ? 'closed' : 'open';
+    }
+    return 'closed';
+  };
+
   return (
-    <div className="cover">
+    <motion.div className="cover" variants={variants} animate={getAnimationState()}>
       <div
         style={{
           backgroundColor: selectedPage ?? 'var(--default-cover-color)',
@@ -30,7 +57,7 @@ const Cover = () => {
         <p>Lorem ipsum sic dolor amet blah blah</p>
         <motion.div className="rivet" animate={{ rotate: selectedPage ? 90 : 0 }} />
       </div>
-    </div>
+    </motion.div>
   );
 };
 
