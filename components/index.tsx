@@ -7,3 +7,5 @@ export { default as Details } from './Details';
 export { default as MetadataInfo } from './MetadataInfo';
 export { default as Trait } from './Trait';
 export { default as ProgressiveImage } from './ProgressiveImage';
+export { default as Menu } from './Menu';
+export { default as MenuItem } from './MenuItem';

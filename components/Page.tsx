@@ -4,9 +4,10 @@ import { Color } from '../types';
 import Swatch from './Swatch';
 
 type Props = {
-  colors: Color[];
+  colors?: Color[];
   isActive: boolean;
   secondPage?: boolean;
+  hasChildren?: boolean;
 };
 
 const isOdd = (num: number) => num % 2 === 1;
@@ -20,7 +21,7 @@ const variants = {
       bounce: 0.4,
     },
   },
-  openPartial: { rotate: 60, transition: { delay: 0.1 } },
+  openPartial: { rotate: 55, transition: { delay: 0.1 } },
   closed: {
     rotate: 0,
     transition: {
@@ -41,23 +42,25 @@ const getClass = (isActive: boolean, secondPage: boolean) => {
   return 'closed';
 };
 
-const Page = ({ colors, isActive, secondPage = false }: Props) => (
+const Page: React.FC<Props> = ({ colors = [], isActive, secondPage = false, hasChildren = false, children }) => (
   <motion.div
     className={`page ${isActive && 'isactive'} ${secondPage && 'secondpage'}`}
     animate={getClass(isActive, secondPage)}
     variants={variants}
   >
     <div className="header">
-      <h2>COTW - {String(isActive)}</h2>
+      <h2>COTW</h2>
     </div>
-    {colors.map((_, i) =>
-      !isOdd(i) ? (
-        <div className="row" key={colors[i].color}>
-          <Swatch color={colors[i]} />
-          {colors[i + 1] && <Swatch color={colors[i + 1]} />}
-        </div>
-      ) : null
-    )}
+    {!children &&
+      colors.map((_, i) =>
+        !isOdd(i) ? (
+          <div className="row" key={colors[i].color}>
+            <Swatch color={colors[i]} />
+            {colors[i + 1] && <Swatch color={colors[i + 1]} />}
+          </div>
+        ) : null
+      )}
+    {children}
   </motion.div>
 );
 

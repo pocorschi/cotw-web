@@ -67,7 +67,7 @@ const Details = () => {
               animate={{
                 opacity: 1,
                 top: '0px',
-                transition: { duration: 0.2, delay: 0, type: 'spring', bounce: 0.4 },
+                transition: { duration: 0.2, delay: 0, type: 'spring', bounce: 0.8 },
               }}
               exit={{
                 opacity: 0,

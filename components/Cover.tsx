@@ -1,28 +1,26 @@
 import { useContext } from 'react';
-import color from 'color';
 import { motion } from 'framer-motion';
 import { AppContext } from '../state/AppContext';
+import { getTextColor } from '../utils/color';
 
 const Cover = () => {
   const { selectedPage } = useContext(AppContext);
 
-  const getTextColor = () => {
-    if (!selectedPage) return 'white';
-    const c = color(selectedPage.toLowerCase());
-    if (c.isLight()) {
-      return 'var(--black)';
-    }
-    return 'white';
-  };
-
   return (
     <div className="cover">
-      <div style={{ backgroundColor: selectedPage ?? 'var(--default-cover-color)' }} className="top">
+      <div
+        style={{
+          backgroundColor: selectedPage ?? 'var(--default-cover-color)',
+        }}
+        className="top"
+      >
         <div className="title">
-          <h2 style={{ color: getTextColor() }}>COLORS OF THE WEB</h2>
-          <h4 style={{ color: getTextColor() }}>Years and years</h4>
+          <h2 style={{ color: getTextColor(selectedPage) }}>COLORS OF THE WEB</h2>
+          <h4>Since 1999</h4>
         </div>
-        <p className="top-text">Colors of the web</p>
+        <p className="top-text" style={{ color: getTextColor(selectedPage) }}>
+          Colors of the web
+        </p>
       </div>
       <div className="bottom">
         <h2 className="title">

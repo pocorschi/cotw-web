@@ -1,80 +1,26 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import type { NextPage } from 'next';
+import Head from 'next/head';
 import React, { useContext, useEffect } from 'react';
 import { AnimateSharedLayout } from 'framer-motion';
 import useSound from 'use-sound';
-import { Page, Cover, colors, Details } from '../components';
+import { Page, Cover, colors, Details, Menu } from '../components';
 import { AppContext } from '../state/AppContext';
-import { Color } from '../types';
+import { ColorPages } from '../types';
 import { getColorStats } from '../utils';
 import sfx from '../components/sfx1.mp3';
-
-const compile = (sourceColors: Color[]) => {
-  const c: {
-    [key: string]: Color[];
-  } = {};
-  const colorsR = sourceColors.map(color => {
-    const [firstLetter, ...rest] = color.family;
-    const family = [firstLetter.toUpperCase(), ...rest].join('');
-    return {
-      ...color,
-      family,
-    };
-  });
-
-  colorsR.forEach((col, idx) => {
-    const newCol = {
-      ...col,
-      idx,
-    };
-    if (c[col.family]) {
-      c[col.family].push(newCol);
-    } else {
-      c[col.family] = [newCol];
-    }
-  });
-  const t: any = {};
-
-  Object.keys(c).forEach(key => {
-    if (c[key].length > 12) {
-      t[key] = {
-        page1: c[key].slice(0, 12),
-        page2: c[key].slice(12),
-      };
-    } else {
-      t[key] = {
-        page1: c[key],
-      };
-    }
-  });
-
-  return t;
-};
+import { compileColors } from '../utils/color';
 
 type Props = {
   stats: any;
 };
 
 const Home: NextPage<Props> = ({ stats }) => {
-  const { setSelectedPage, selectedPage, setStats } = useContext(AppContext);
+  const { selectedPage, setSelectedPage, selectedColor, setStats } = useContext(AppContext);
 
   const [play] = useSound(sfx, { volume: 0.2 });
 
-  const c: {
-    [key: string]: {
-      page1: Color[];
-      page2?: Color[];
-    };
-  } = compile(colors);
-
-  const handlePageSelect = (page: string) => {
-    if (setSelectedPage) {
-      if (selectedPage === page) {
-        setSelectedPage(null);
-      } else {
-        setSelectedPage(page);
-      }
-    }
-  };
+  const c: ColorPages = compileColors(colors);
 
   useEffect(() => {
     if (setStats) {
@@ -86,30 +32,46 @@ const Home: NextPage<Props> = ({ stats }) => {
     play();
   }, [selectedPage]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      if (setSelectedPage) {
+        setSelectedPage('About');
+      }
+    }, 2000);
+  }, []);
+
   return (
-    <div className="bg">
-      <AnimateSharedLayout>
-        <div className="main-container">
-          <div className="menu-container">
+    <>
+      <Head>
+        <meta name="theme-color" content={selectedColor ? selectedColor.hex : '#ffff00'} />
+      </Head>
+      <div className="bg">
+        <AnimateSharedLayout>
+          <div className="main-container">
+            <Menu colors={c} />
+            <Page isActive={selectedPage === 'About'} secondPage>
+              <div className="about-page">
+                <h2>asdasdasdasda</h2>
+              </div>
+            </Page>
+            <Page isActive={selectedPage === 'About'}>
+              <div className="about-page">
+                <h2>asdasdasdasda</h2>
+              </div>
+            </Page>
             {Object.keys(c).map(key => (
-              <button key={key} type="button" onClick={() => handlePageSelect(key)}>
-                <h2>{key}</h2>
-              </button>
+              <React.Fragment key={key}>
+                {c[key].page2 ? <Page colors={c[key].page2 ?? []} isActive={selectedPage === key} secondPage /> : null}
+                <Page colors={c[key].page1} isActive={selectedPage === key} />
+              </React.Fragment>
             ))}
+
+            <Cover />
           </div>
-
-          {Object.keys(c).map(key => (
-            <React.Fragment key={key}>
-              {c[key].page2 ? <Page colors={c[key].page2 ?? []} isActive={selectedPage === key} secondPage /> : null}
-              <Page colors={c[key].page1} isActive={selectedPage === key} />
-            </React.Fragment>
-          ))}
-
-          <Cover />
-        </div>
-        <Details />
-      </AnimateSharedLayout>
-    </div>
+          <Details />
+        </AnimateSharedLayout>
+      </div>
+    </>
   );
 };
 
