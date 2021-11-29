@@ -22,6 +22,7 @@ const MenuItem = ({ handlePageSelect, label, color }: Props) => {
       <div
         style={{
           color: selectedPage === label ? getTextColor(color) : 'var(--white)',
+          textShadow: selectedPage === label ? '' : '5px 5px 0px rgba(0, 0, 0, 1)',
         }}
       >
         {label}

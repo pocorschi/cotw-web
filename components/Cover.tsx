@@ -54,7 +54,8 @@ const Cover = () => {
           COTW<sup>&copy;</sup>
         </h2>
 
-        <p>Lorem ipsum sic dolor amet blah blah</p>
+        <p>140 colors.</p>
+        <p>Find your own!</p>
         <motion.div className="rivet" animate={{ rotate: selectedPage ? 90 : 0 }} />
       </div>
     </motion.div>

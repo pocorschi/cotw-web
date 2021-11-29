@@ -10,3 +10,7 @@ export { default as ProgressiveImage } from './ProgressiveImage';
 export { default as Menu } from './Menu';
 export { default as MenuItem } from './MenuItem';
 export { default as SubPageSelector } from './SubPageSelector';
+export { default as FavIcon } from './FavIcon';
+export { default as OpenSea } from './OpenSea';
+export { default as BottomRight } from './BottomRight';
+export { default as EasterEgg } from './EasterEgg';

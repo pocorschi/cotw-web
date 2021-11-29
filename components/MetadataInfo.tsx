@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useQuery } from 'react-query';
 import Trait from './Trait';
 
-const jsonCID = 'QmcroEguuDg1qfnVhhJgQCAnKyqmb9WHFT41Ko53V75md7';
+const jsonCID = 'QmT6WEiJ4a5XVUtQwgzCheX1NjhnEqpgwiLt9C3i4V1wBH';
 const jsonBase = `metadata/${jsonCID}`;
 
 type Props = {
@@ -19,11 +19,10 @@ const MetadataInfo = ({ idx }: Props) => {
   const { data, isLoading } = useQuery(['COTW', idx], () => axios(`${jsonBase}/${idx}.json`));
 
   return (
-    <div>
+    <>
       {isLoading && <p>Loading...</p>}
       {data && (
         <div className="metadata-container">
-          <h2>Description:</h2>
           <h4>{data.data.description}</h4>
           <div className="traits-container">
             {data.data.attributes.map((attr: Attribute) => (
@@ -32,7 +31,7 @@ const MetadataInfo = ({ idx }: Props) => {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

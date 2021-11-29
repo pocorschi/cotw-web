@@ -4,6 +4,7 @@ import { Color } from '../types';
 
 export const getTextColor = (col: string | null | undefined) => {
   if (!col) return 'white';
+  if (!CSS.supports('color', col)) return 'white';
   try {
     const c = colorLib(col.toLowerCase());
     if (c.isLight()) {

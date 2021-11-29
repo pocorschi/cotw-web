@@ -13,9 +13,11 @@ const Trait = ({ name, value }: Props) => {
 
   return (
     <div className="trait">
-      <h5>{name}</h5>
-      <h4>{value}</h4>
-      <h4>{rarity}%</h4>
+      <h5 className="name">{name}</h5>
+      <h4 className="value">{value}</h4>
+      <h4 className="rarity">
+        {rarity}% <span>have this trait</span>
+      </h4>
     </div>
   );
 };

@@ -4,7 +4,20 @@ import Head from 'next/head';
 import React, { useContext, useEffect } from 'react';
 import { AnimateSharedLayout } from 'framer-motion';
 import useSound from 'use-sound';
-import { Page, Cover, colors, Details, Menu, SubPageSelector } from '../components';
+import { useKonami } from 'react-konami-code';
+import { BrowserView, MobileView } from 'react-device-detect';
+import {
+  Page,
+  Cover,
+  colors,
+  Details,
+  Menu,
+  SubPageSelector,
+  FavIcon,
+  OpenSea,
+  BottomRight,
+  EasterEgg,
+} from '../components';
 import { AppContext } from '../state/AppContext';
 import { ColorPages } from '../types';
 import { getColorStats } from '../utils';
@@ -16,9 +29,9 @@ type Props = {
 };
 
 const Home: NextPage<Props> = ({ stats }) => {
-  const { selectedPage, setSelectedPage, selectedColor, setStats } = useContext(AppContext);
+  const { selectedPage, setSelectedPage, selectedColor, setSelectedColor, setStats } = useContext(AppContext);
 
-  const [play] = useSound(sfx, { volume: 0.2 });
+  const [play] = useSound(sfx, { volume: 0.1 });
 
   const c: ColorPages = compileColors(colors);
 
@@ -37,8 +50,21 @@ const Home: NextPage<Props> = ({ stats }) => {
       if (setSelectedPage) {
         setSelectedPage('About');
       }
-    }, 2000);
+    }, 1000);
   }, []);
+
+  const activate = () => {
+    if (setSelectedColor) {
+      setSelectedColor({
+        category: 'special',
+        color: 'Transparent',
+        family: 'Transparent',
+        hex: '#00000000',
+        idx: 140,
+      });
+    }
+  };
+  useKonami(activate);
 
   const setScale = () => {
     const width = window.innerWidth;
@@ -68,13 +94,20 @@ const Home: NextPage<Props> = ({ stats }) => {
           <div className="main-container">
             <Menu colors={c} />
             <Page isActive={selectedPage === 'About'} secondPage>
-              <div className="about-page">
-                <h2>asdasdasdasda</h2>
+              <div className="about-page about-page-second">
+                <h2>START HERE</h2>
               </div>
             </Page>
             <Page isActive={selectedPage === 'About'}>
               <div className="about-page">
-                <h2>asdasdasdasda</h2>
+                <h2>
+                  <span>&quot;Colors Of The Web&quot;</span> is a NFT collection created by <span>InnocentPixel</span>,
+                  paying homage to how the usage of colors online has evolved throughout the years.
+                </h2>
+                <h2>
+                  140 colors were minted and are available to be collected. Phase 2 is in progress, pending on the
+                  interest of the community.
+                </h2>
               </div>
             </Page>
             {Object.keys(c).map(key => (
@@ -83,12 +116,22 @@ const Home: NextPage<Props> = ({ stats }) => {
                 <Page colors={c[key].page1} isActive={selectedPage === key} />
               </React.Fragment>
             ))}
-            <SubPageSelector active={Boolean(selectedPage && c[selectedPage]?.page2)} />
+            <BottomRight>
+              <SubPageSelector active={Boolean(selectedPage && c[selectedPage]?.page2)} />
+              <MobileView>
+                <OpenSea />
+              </MobileView>
+            </BottomRight>
             <Cover />
           </div>
           <Details />
+          <EasterEgg />
+          <BrowserView className="footer">
+            <OpenSea />
+          </BrowserView>
         </AnimateSharedLayout>
       </div>
+      <FavIcon />
     </>
   );
 };

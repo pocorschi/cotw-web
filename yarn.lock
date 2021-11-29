@@ -4381,6 +4381,13 @@ react-is@^16.8.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
+react-konami-code@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/react-konami-code/-/react-konami-code-2.2.2.tgz#cf42af47bdc3fe3ffefce6333ea881026936f429"
+  integrity sha512-TTrdZqA25WItE6Pk6bjoIu/YKjQ6aRmk70TIqGb/tmj2tiYYcKTeDutcnikYJcX3RPsUW7CHFULq2T4svbFc+A==
+  dependencies:
+    prop-types "^15.7.2"
+
 react-native-crypto-js@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-native-crypto-js/-/react-native-crypto-js-1.0.0.tgz#e677e022e147f41b35614416c92d655f87e2450a"
