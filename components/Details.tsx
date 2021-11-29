@@ -1,9 +1,12 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useContext } from 'react';
 import color from 'color';
 import { AnimatePresence, motion } from 'framer-motion';
 import { AppContext } from '../state/AppContext';
 import MetadataInfo from './MetadataInfo';
 import ProgressiveImage from './ProgressiveImage';
+import OpenSea from './OpenSea';
 
 const bgVariants = {
   hidden: {
@@ -25,7 +28,7 @@ const bgVariants = {
   },
 };
 
-const imgCID = 'QmbmBkrVV3dJ9d61fogXGgSfXs42t82F6ntxVZHfceuES9';
+const imgCID = 'QmYpsPFiCGF7gqGfBqFYCmBMD55hJBgTrKvVRG3MnkNRYe';
 
 const Details = () => {
   const { selectedColor, setSelectedColor } = useContext(AppContext);
@@ -50,9 +53,8 @@ const Details = () => {
 
   return (
     <AnimatePresence exitBeforeEnter>
-      {selectedColor ? (
+      {selectedColor && selectedColor.idx !== 140 ? (
         <motion.div
-          onClick={() => setSelectedColor(null)}
           variants={bgVariants}
           custom={selectedColor?.hex}
           animate="visible"
@@ -60,39 +62,41 @@ const Details = () => {
           exit="exit"
           className="details-outside-container"
         >
-          <div>
-            <motion.div
-              className="details-container"
-              initial={{ opacity: 0, top: '-500px' }}
-              animate={{
-                opacity: 1,
-                top: '0px',
-                transition: { duration: 0.2, delay: 0, type: 'spring', bounce: 0.4 },
-              }}
-              exit={{
-                opacity: 0,
-                top: '500px',
-                transition: {
-                  delay: 0,
-                  duration: 0.2,
-                },
+          <motion.div
+            className="details-container"
+            initial={{ opacity: 0, top: '-500px' }}
+            animate={{
+              opacity: 1,
+              top: '0px',
+              transition: { duration: 0.2, delay: 0, type: 'spring', bounce: 0.8 },
+            }}
+            exit={{
+              opacity: 0,
+              top: '500px',
+              transition: {
+                delay: 0,
+                duration: 0.2,
+              },
+            }}
+          >
+            <div
+              className="photo"
+              style={{
+                boxShadow: getShadowColor(),
               }}
             >
-              <div
-                className="photo"
-                style={{
-                  boxShadow: getShadowColor(),
-                }}
-              >
-                <ProgressiveImage
-                  src={`${imgBase}/${selectedColor.idx}.png`}
-                  alt="test"
-                  placeholder={`images/${selectedColor.idx}.png`}
-                />
-              </div>
-              <MetadataInfo idx={selectedColor.idx ?? 0} />
-            </motion.div>
-          </div>
+              <ProgressiveImage
+                src={`${imgBase}/${selectedColor.idx}.png`}
+                alt="test"
+                placeholder={`images/${selectedColor.idx}.png`}
+              />
+            </div>
+            <MetadataInfo idx={selectedColor.idx ?? 0} />
+            <div className="details-opensea-container">
+              <OpenSea align="right" />
+            </div>
+          </motion.div>
+          <div className="details-container-clickoutside" onClick={() => setSelectedColor(null)} />
         </motion.div>
       ) : null}
     </AnimatePresence>

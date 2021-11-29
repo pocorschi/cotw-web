@@ -1,11 +1,10 @@
 import fs from 'fs';
 import path from 'path';
 
-const dir = path.join(process.cwd(), './public/metadata/QmcroEguuDg1qfnVhhJgQCAnKyqmb9WHFT41Ko53V75md7');
+const dir = path.join(process.cwd(), './public/metadata/QmT6WEiJ4a5XVUtQwgzCheX1NjhnEqpgwiLt9C3i4V1wBH');
 
 export function getColorStats() {
   const filenames = fs.readdirSync(dir);
-
   const allData = filenames.map(filename => {
     const fullPath = path.join(dir, filename);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
