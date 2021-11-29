@@ -118,7 +118,7 @@ const Home: NextPage<Props> = ({ stats }) => {
             ))}
             <BottomRight>
               <SubPageSelector active={Boolean(selectedPage && c[selectedPage]?.page2)} />
-              <MobileView>
+              <MobileView style={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <OpenSea />
               </MobileView>
             </BottomRight>

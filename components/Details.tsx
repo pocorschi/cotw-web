@@ -93,7 +93,12 @@ const Details = () => {
             </div>
             <MetadataInfo idx={selectedColor.idx ?? 0} />
             <div className="details-opensea-container">
-              <OpenSea align="right" />
+              <button type="button" onClick={() => setSelectedColor(null)}>
+                CLOSE
+              </button>
+              <div style={{ width: '50%' }}>
+                <OpenSea align="right" />
+              </div>
             </div>
           </motion.div>
           <div className="details-container-clickoutside" onClick={() => setSelectedColor(null)} />

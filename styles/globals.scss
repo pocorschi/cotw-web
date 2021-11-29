@@ -504,9 +504,9 @@ body {
     background: 0;
     margin: 0;
     color: white;
-    border: 2px solid white;
     border-radius: var(--card-border-radius);
     padding: 20px 40px;
+    flex: 1;
   }
 }
 
@@ -582,16 +582,23 @@ body {
   display: flex;
   align-items: flex-end;
   flex-direction: column;
+  justify-content: flex-end;
 }
 
 .opensea-container {
+  width: 150px;
   img {
-    width: 70%;
+    width: 100%;
   }
 
   @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+    width: 80%;
+
+    &.small {
+      width: 40%;
+    }
     img {
-      width: 50%;
+      width: 100%;
     }
   }
 }
