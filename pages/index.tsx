@@ -102,7 +102,8 @@ const Home: NextPage<Props> = ({ stats }) => {
               <div className="about-page">
                 <h2>
                   <span>&quot;Colors Of The Web&quot;</span> is a NFT collection created by <span>InnocentPixel</span>,
-                  paying homage to how the usage of colors online has evolved throughout the years.
+                  part of the <span>TC community</span>, paying homage to how the usage of colors online has evolved
+                  throughout the years.
                 </h2>
                 <h2>
                   140 colors were minted and are available to be collected. Phase 2 is in progress, pending on the
