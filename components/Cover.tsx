@@ -33,16 +33,23 @@ const Cover = () => {
     return 'closed';
   };
 
+  const getTopColor = () => {
+    if (selectedPage === 'About') {
+      return 'var(--default-cover-color';
+    }
+    return selectedPage ?? 'var(--default-cover-color)';
+  };
+
   return (
     <motion.div className="cover" variants={variants} animate={getAnimationState()}>
       <div
         style={{
-          backgroundColor: selectedPage ?? 'var(--default-cover-color)',
+          backgroundColor: getTopColor(),
         }}
         className="top"
       >
         <div className="title">
-          <h2>COLORS OF THE WEB</h2>
+          <h2 style={{ color: getTextColor(selectedPage) }}>COLORS OF THE WEB</h2>
           <h4 style={{ color: getTextColor(selectedPage) }}>Since 1999</h4>
         </div>
         <p className="top-text" style={{ color: getTextColor(selectedPage) }}>
