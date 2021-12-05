@@ -28,7 +28,7 @@ const bgVariants = {
   },
 };
 
-const imgCID = 'QmYpsPFiCGF7gqGfBqFYCmBMD55hJBgTrKvVRG3MnkNRYe';
+const imgCID = 'QmQkSQQH23Zsz6xDA2ikyKG7XAA9Ta7sbobbAZtZ2TDfQr';
 
 const Details = () => {
   const { selectedColor, setSelectedColor } = useContext(AppContext);

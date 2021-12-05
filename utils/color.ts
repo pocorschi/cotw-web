@@ -32,7 +32,7 @@ export const compileColors = (sourceColors: Color[]) => {
   colorsR.forEach((col, idx) => {
     const newCol = {
       ...col,
-      idx,
+      idx: idx + 1,
     };
     if (c[col.family]) {
       c[col.family].push(newCol);

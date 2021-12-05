@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useQuery } from 'react-query';
 import Trait from './Trait';
 
-const jsonCID = 'QmT6WEiJ4a5XVUtQwgzCheX1NjhnEqpgwiLt9C3i4V1wBH';
+const jsonCID = 'QmRHuLNNHMxPqWyxdrQyGo9EqvZadV4hgaFcNkTciLq2fY';
 const jsonBase = `metadata/${jsonCID}`;
 
 type Props = {
