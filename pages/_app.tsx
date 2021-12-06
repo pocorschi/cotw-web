@@ -20,6 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
+        <title>Colors of the Web</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       </Head>
       <QueryClientProvider client={queryClient}>

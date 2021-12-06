@@ -5,6 +5,25 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <title>Colors of the Web</title>
+          <meta
+            name="description"
+            content="Colors Of The Web&quot is a NFT collection created by InnocentPixel,
+                  part of the TC community. Paying homage to how the usage of colors online has evolved
+                  throughout the years."
+          />
+          <meta property="og:title" content="Colors of the Web" />
+          <meta
+            property="og:description"
+            content="Colors Of The Web&quot is a NFT collection created by InnocentPixel,
+                  part of the TC community. Paying homage to how the usage of colors online has evolved
+                  throughout the years."
+          />
+          <meta property="og:url" content="https://colorsoftheweb.art" />
+          <meta property="og:type" content="website" />
+          <meta property="og:image" content="https://colorsoftheweb.art/cotw-all-small.png" />
+
+          <link rel="icon" href="/favicon.ico" />
           <link
             href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;800&display=swap"
             rel="stylesheet"
