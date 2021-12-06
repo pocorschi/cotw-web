@@ -23,6 +23,7 @@ import { ColorPages } from '../types';
 import { getColorStats } from '../utils';
 import sfx from '../components/sfx1.mp3';
 import { compileColors } from '../utils/color';
+import * as ga from '../lib/ga';
 
 type Props = {
   stats: any;
@@ -46,6 +47,8 @@ const Home: NextPage<Props> = ({ stats }) => {
   }, [selectedPage]);
 
   useEffect(() => {
+    ga.pageview('/');
+    ga.event({ action: 'homepage', params: {} });
     setTimeout(() => {
       if (setSelectedPage) {
         setSelectedPage('About');
