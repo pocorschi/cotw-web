@@ -9,7 +9,7 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;800&display=swap"
             rel="stylesheet"
           />
-          <script async src={`https://www.googletagmanager.com/gtag/js?id=G-CQ2JRBJ8CK}`} />
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ2JRBJ8CK" />
           <script
             dangerouslySetInnerHTML={{
               __html: `
