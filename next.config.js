@@ -3,6 +3,9 @@ module.exports = {
   // reactStrictMode: true,
   // {
   //   webpack(config, options)
+  env: {
+    googleAnalyticsID: 'G-CQ2JRBJ8CK',
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.(mp3)$/,

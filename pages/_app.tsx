@@ -1,13 +1,22 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import '../styles/globals.scss';
+import { useEffect } from 'react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import ReactGA from 'react-ga';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { AppProvider } from '../state/AppContext';
 
 const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }: AppProps) {
+  useEffect(() => {
+    if (process.env.googleAnalyticsID && process.env.NODE_ENV === 'production') {
+      // Checks for GA ID and only turns on GA in production
+      ReactGA.initialize(process.env.googleAnalyticsID);
+      ReactGA.pageview(window.location.pathname + window.location.search);
+    }
+  });
   return (
     <>
       <Head>
