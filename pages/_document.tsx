@@ -5,19 +5,14 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <title>Colors of the Web</title>
           <meta
             name="description"
-            content="Colors Of The Web&quot is a NFT collection created by InnocentPixel,
-                  part of the TC community. Paying homage to how the usage of colors online has evolved
-                  throughout the years."
+            content="Colors Of The Web is a NFT collection created by InnocentPixel, part of the TC community. It pays homage to how the usage of colors online has evolved throughout the years by forever minting it on the chain."
           />
           <meta property="og:title" content="Colors of the Web" />
           <meta
             property="og:description"
-            content="Colors Of The Web&quot is a NFT collection created by InnocentPixel,
-                  part of the TC community. Paying homage to how the usage of colors online has evolved
-                  throughout the years."
+            content="Colors Of The Web is a NFT collection created by InnocentPixel, part of the TC community. It pays homage to how the usage of colors online has evolved throughout the years by forever minting it on the chain."
           />
           <meta property="og:url" content="https://colorsoftheweb.art" />
           <meta property="og:type" content="website" />
